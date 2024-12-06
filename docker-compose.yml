@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: api-portfolio-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: api-portfolio-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456789
