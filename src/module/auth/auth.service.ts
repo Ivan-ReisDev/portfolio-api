@@ -27,7 +27,7 @@ export class AuthService {
       throw new UnauthorizedException('Usuário não existe');
     }
 
-    if (this.bcrypt.compareHash(foundUser.password, data.password)) {
+    if (await this.bcrypt.compareHash(foundUser.password, data.password)) {
       const payload = {
         sub: foundUser.id,
         email: foundUser.email,

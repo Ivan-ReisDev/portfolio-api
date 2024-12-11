@@ -1,99 +1,150 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# API TESTE TÉCNICO
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Esta API, desenvolvida como parte de um teste técnico para a Reverbs, oferece funcionalidades baseadas em autenticação JWT para gerenciar usuários e dados de forma segura. Construída com o framework Nest.js, ela demonstra práticas modernas de desenvolvimento backend, sendo ideal para aplicações que requerem autenticação robusta e organização modular.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Recursos Disponíveis
 
-## Description
+- Criar usuário.
+- Listar usuários: Obtenha o perfil do usuário de forma rápida.
+- Autenticação.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tecnologias usadas
 
-## Project setup
+**Linguagem:** Typescript
 
-```bash
-$ npm install
-```
+**ORM:** Prisma
 
-## Compile and run the project
+**Container:** Docker
 
-```bash
-# development
-$ npm run start
+**Framework:** Nest.js
 
-# watch mode
-$ npm run start:dev
+**Database:** PostgreSQL
 
-# production mode
-$ npm run start:prod
-```
+## Instalação e Configuração
 
-## Run tests
+**Pré requisitos**
+
+Antes de começar, certifique-se de ter instalado:
+
+- Node.js (versão 20 ou superior)
+- Typescript (versão 5.7.2 ou superior)
+- PostgreSQL (ou outro banco de dados compatível)
+- Docker (versão 27.3.1 ou superior) 
+- npm ou yarn
+
+Faça o donwload do repositório através do github usando o comando:
+
+Clone the project
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+  git clone https://link-to-project
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Go to the project directory
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+  cd my-project
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Após entrar na pasta será necessário configurar variáveis de ambiente, para isso crie na raíz do projeto o arquivo `.env`
+será necessário setar as seguintes variáveis:
 
-## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
+esse projeto será necessário configurar variáveis de ambiente:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+  DATABASE_URL="postgresql://postgres:OUaMOpwWJxNveDRIWaVbBkquskpikbZt@junction.proxy.rlwy.net:41177/railway?connect_timeout=60&pool_timeout=30"
+```
 
-## Support
+Caso use outra url será necessário adicionar o `connect_timeout=60&pool_timeout=3` ao final da url.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Rodar Localmente
 
-## Stay in touch
+Para iniciar o projeto use:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Instalar dependências
 
-## License
+```bash
+  npm install
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Iniciar o servidor
+
+```bash
+  npm run dev
+```
+
+O servidor ficará disponível na url `http://localhost:8080` lembrando que a porta a api tem o prefixo `/api` logo par acessar os endpois será necessário usar no seguinte formato: `http://localhost:8080/api`
+
+## Endpoints
+
+#### POST livros
+
+```http
+  POST /api/books
+```
+
+| Campo           | Type     | Obrigatório | Description                  |
+| :-------------- | :------- | :---------- | :--------------------------- |
+| `title`         | `string` | SIM         | O título do livro            |
+| `author`        | `string` | SIM         | O autor do livro             |
+| `publishedYear` | `number` | SIM         | O ano de publicação do livro |
+
+Exemplo de corpo:
+
+```json
+{
+  "title": "O Senhor dos Anéis",
+  "author": "J.R.R. Tolkien",
+  "publishedYear": 1954
+}
+```
+
+Exemplo de requisição:
+
+```js
+const response = await fetch(url, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(bookData),
+});
+```
+
+
+#### GET livros
+
+```http
+  GET /api/books
+```
+
+O endpoint do tipo get ele funciona de 2 formas, a primeira é a requisição get sem query onde irá retornar uma lista com todos os livros registrados, a segunda é o uso da query `title` onde irá retornar o título específico solicitado;  `/api/books?title=SEU_TITULO_AQUI`
+
+| Query           | Type     | Obrigatório | Description                  |
+| :-------------- | :------- | :---------- | :--------------------------- |
+| `title`         | `string` | NÃO         | O título do livro            |
+
+
+
+Exemplo de requisição:
+
+```js
+const response = await fetch(url, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  }
+});
+```
+
+## Running Tests
+
+Esta api para seguir boas práticas de programação foi usado o JEST para testes;
+
+Para iniciar os testes é necessário executar o comando:
+
+```bash
+  npm run test
+```
+

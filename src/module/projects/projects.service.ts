@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { Project } from './entities/projects';
 import { PrismaService } from 'src/database/prisma.service';
+import { ProjectResponse } from './entities/projects.response';
 
 @Injectable()
 export class ProjectsService {
@@ -48,5 +49,22 @@ export class ProjectsService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  public async findGetByAll(
+    page: number,
+    limit: number,
+  ): Promise<ProjectResponse[]> {
+    const skip = (page - 1) * limit;
+    const docs = await this.prisma.projects.findMany({
+      skip,
+      take: limit,
+    });
+
+    const projects = docs.map((project) => {
+      return new ProjectResponse(project);
+    });
+
+    return projects;
   }
 }
