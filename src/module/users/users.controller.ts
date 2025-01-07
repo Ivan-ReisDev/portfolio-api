@@ -6,6 +6,7 @@ import {
   ParseIntPipe,
   Post,
   Query,
+  Req,
   UseGuards,
   UsePipes,
   ValidationPipe,
@@ -24,12 +25,18 @@ export class UsersController {
   @Public()
   @UsePipes(ValidationPipe)
   @Post()
-  async create(@Body() data: User) {
+  public async create(@Body() data: User) {
     return this.usersService.create(data);
   }
 
+  @Get('/profile')
+  public async currentProfile(@Req() request: Request): Promise<UserResponse> {
+    const { email: userEmail } = request['user'];
+    return await this.usersService.findGetByEmail(userEmail);
+  }
+
   @Get()
-  async findGetAll(
+  public async findGetAll(
     @Query('page', ParseIntPipe) page: number,
     @Query('limit', ParseIntPipe) limit: number,
   ): Promise<UserResponse[]> {
@@ -38,7 +45,9 @@ export class UsersController {
   }
 
   @Get('/:email')
-  async findGetByEmail(@Param('email') email: string): Promise<UserResponse> {
+  public async findGetByEmail(
+    @Param('email') email: string,
+  ): Promise<UserResponse> {
     return await this.usersService.findGetByEmail(email);
   }
 }

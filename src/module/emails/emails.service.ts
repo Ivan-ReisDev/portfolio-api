@@ -3,6 +3,8 @@ import nodemailer from 'nodemailer';
 import { emailMarketing } from './templates/email.marketing';
 import * as path from 'path';
 import { ConfigService } from '@nestjs/config';
+import { passwordRecovery } from './templates/password.recovery';
+import { MailOptionsDto } from './dtos/mailOptions';
 
 @Injectable()
 export class EmailsService {
@@ -16,7 +18,7 @@ export class EmailsService {
     this.emailService = this.configService.get<string>('EMAIL');
   }
 
-  public async sendEmail(email: string) {
+  public async sendEmailCurriculum(email: string) {
     const htmlcontent = emailMarketing();
     const mailOptions = {
       from: this.emailService,
@@ -35,6 +37,22 @@ export class EmailsService {
       ],
     };
 
+    await this.sendEmail(mailOptions);
+  }
+
+  public async sendEmailPasswordRecovery(email: string) {
+    const htmlcontent = passwordRecovery();
+    const mailOptions = {
+      from: this.emailService,
+      to: email,
+      subject: 'Recuperação de senha',
+      text: 'Recuperação de senha',
+      html: htmlcontent,
+    };
+    await this.sendEmail(mailOptions);
+  }
+
+  private async sendEmail(mailOptions: MailOptionsDto) {
     try {
       const info = await this.transporter.sendMail(mailOptions);
       console.log('Email enviado:', info.response);

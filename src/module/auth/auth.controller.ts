@@ -23,7 +23,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @UsePipes(ValidationPipe)
   @Post('/login')
-  async signIn(@Body() auth: AuthDto): Promise<AuthResponseDto> {
+  public async signIn(@Body() auth: AuthDto): Promise<AuthResponseDto> {
     return await this.authService.signIn(auth);
   }
 }

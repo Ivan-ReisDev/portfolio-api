@@ -27,14 +27,21 @@ export class AuthService {
       throw new UnauthorizedException('Usuário não existe');
     }
 
-    if (await this.bcrypt.compareHash(foundUser.password, data.password)) {
+    if (await this.bcrypt.compareHash(data.password, foundUser.password)) {
       const payload = {
         sub: foundUser.id,
         email: foundUser.email,
         role: foundUser.role,
       };
       const token = this.jwtService.sign(payload);
-      return { token, expireIn: this.expirationJwtTime };
+      return {
+        id: foundUser.id,
+        name: foundUser.name,
+        email: foundUser.email,
+        role: foundUser.role,
+        token,
+        expireIn: this.expirationJwtTime,
+      };
     }
 
     throw new UnauthorizedException('Usuário ou senha incorreto');

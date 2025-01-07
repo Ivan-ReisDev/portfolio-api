@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ProjectsModule } from './module/projects/projects.module';
 import { UploadsModule } from './module/uploads/uploads.module';
 import { EmailsModule } from './module/emails/emails.module';
+import { ConfigService } from './module/config/config.service';
 
 @Module({
   imports: [
@@ -16,8 +17,9 @@ import { EmailsModule } from './module/emails/emails.module';
     ProjectsModule,
     UploadsModule,
     EmailsModule,
+    ConfigModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ConfigService],
 })
 export class AppModule {}
