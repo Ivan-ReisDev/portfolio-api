@@ -29,7 +29,7 @@ Antes de começar, certifique-se de ter instalado:
 - Node.js (versão 20 ou superior)
 - Typescript (versão 5.7.2 ou superior)
 - PostgreSQL (ou outro banco de dados compatível)
-- Docker (versão 27.3.1 ou superior) 
+- Docker (versão 27.3.1 ou superior)
 - npm ou yarn
 
 Faça o donwload do repositório através do github usando o comando:
@@ -48,7 +48,6 @@ Go to the project directory
 
 Após entrar na pasta será necessário configurar variáveis de ambiente, para isso crie na raíz do projeto o arquivo `.env`
 será necessário setar as seguintes variáveis:
-
 
 esse projeto será necessário configurar variáveis de ambiente:
 
@@ -104,14 +103,13 @@ Exemplo de requisição:
 
 ```js
 const response = await fetch(url, {
-  method: "POST",
+  method: 'POST',
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
   body: JSON.stringify(bookData),
 });
 ```
-
 
 #### GET livros
 
@@ -119,22 +117,20 @@ const response = await fetch(url, {
   GET /api/books
 ```
 
-O endpoint do tipo get ele funciona de 2 formas, a primeira é a requisição get sem query onde irá retornar uma lista com todos os livros registrados, a segunda é o uso da query `title` onde irá retornar o título específico solicitado;  `/api/books?title=SEU_TITULO_AQUI`
+O endpoint do tipo get ele funciona de 2 formas, a primeira é a requisição get sem query onde irá retornar uma lista com todos os livros registrados, a segunda é o uso da query `title` onde irá retornar o título específico solicitado; `/api/books?title=SEU_TITULO_AQUI`
 
-| Query           | Type     | Obrigatório | Description                  |
-| :-------------- | :------- | :---------- | :--------------------------- |
-| `title`         | `string` | NÃO         | O título do livro            |
-
-
+| Query   | Type     | Obrigatório | Description       |
+| :------ | :------- | :---------- | :---------------- |
+| `title` | `string` | NÃO         | O título do livro |
 
 Exemplo de requisição:
 
 ```js
 const response = await fetch(url, {
-  method: "GET",
+  method: 'GET',
   headers: {
-    "Content-Type": "application/json",
-  }
+    'Content-Type': 'application/json',
+  },
 });
 ```
 
@@ -147,4 +143,3 @@ Para iniciar os testes é necessário executar o comando:
 ```bash
   npm run test
 ```
-
