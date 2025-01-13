@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Supabase } from 'src/lib/supabase/supabase';
+import { Supabase } from '../../lib/supabase/supabase';
 
 @Injectable()
 export class UploadsService {

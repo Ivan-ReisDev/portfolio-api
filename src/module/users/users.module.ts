@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { PrismaService } from '../../database/prisma.service';
-import { Bcrypt } from 'src/lib/bcrypt/bcrypt';
+import { Bcrypt } from '../../lib/bcrypt/bcrypt';
 
 @Module({
   controllers: [UsersController],
