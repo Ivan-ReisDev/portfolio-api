@@ -15,7 +15,7 @@ import { UsersService } from './users.service';
 import { User } from './entities/user';
 import { UserResponse } from './entities/user.response';
 import { AuthGuard } from '../auth/auth.guard';
-import { Public } from 'src/common/decorators/public';
+import { Public } from '../../common/decorators/public';
 
 @UseGuards(AuthGuard)
 @Controller('users')

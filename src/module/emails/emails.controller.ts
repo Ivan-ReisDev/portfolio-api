@@ -1,7 +1,7 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { EmailsService } from './emails.service';
 import { AuthGuard } from '../auth/auth.guard';
-import { Public } from 'src/common/decorators/public';
+import { Public } from '../../common/decorators/public';
 
 @UseGuards(AuthGuard)
 @Controller('emails')
