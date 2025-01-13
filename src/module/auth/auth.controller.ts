@@ -33,6 +33,7 @@ export class AuthController {
       httpOnly: true,
       secure: true,
       maxAge: 259200000,
+      sameSite: 'None',
     });
     return authResponse;
   }
@@ -46,6 +47,7 @@ export class AuthController {
       httpOnly: true,
       secure: true,
       maxAge: 0,
+      sameSite: 'None',
     });
 
     return { message: 'Logged out successfully' };
