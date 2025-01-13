@@ -5,7 +5,7 @@ import * as cookieParser from 'cookie-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: 'https://portfolio-theta-sepia-99.vercel.app',
+    origin: 'https://portfolio-api-sigma-three.vercel.app',
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true,
