@@ -14,7 +14,7 @@ import { AuthDto } from './dtos/auth.dto';
 import { AuthResponseDto } from './dtos/auth.response.dto';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
-import { Public } from 'src/common/decorators/public';
+import { Public } from '../../common/decorators/public';
 
 @UseGuards(AuthGuard)
 @Controller('auth')
