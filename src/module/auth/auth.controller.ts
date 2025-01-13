@@ -14,7 +14,7 @@ import { AuthDto } from './dtos/auth.dto';
 import { AuthResponseDto } from './dtos/auth.response.dto';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
-import { Public } from '../../common/decorators/public';
+import { Public } from 'src/common/decorators/public';
 
 @UseGuards(AuthGuard)
 @Controller('auth')
@@ -31,9 +31,8 @@ export class AuthController {
     const authResponse = await this.authService.signIn(auth);
     response.cookie('portfolio_auth_token', authResponse?.token, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       maxAge: 259200000,
-      sameSite: 'none',
     });
     return authResponse;
   }
@@ -45,9 +44,8 @@ export class AuthController {
   ): Promise<{ message: string }> {
     response.cookie('portfolio_auth_token', '', {
       httpOnly: true,
-      secure: true,
+      secure: false,
       maxAge: 0,
-      sameSite: 'none',
     });
 
     return { message: 'Logged out successfully' };
