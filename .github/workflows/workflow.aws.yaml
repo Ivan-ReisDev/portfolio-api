@@ -18,7 +18,7 @@ jobs:
       uses: easingthemes/ssh-deploy@main
       env:
         SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }} # A chave privada deve estar configurada em secrets
-        SOURCE: "./" # Caminho da pasta local para deploy
+        SOURCE: "/" # Caminho da pasta local para deploy
         REMOTE_HOST: "ec2-18-231-189-14.sa-east-1.compute.amazonaws.com" # O IP ou domínio da sua instância EC2
         REMOTE_USER: "ubuntu" # Usuário da instância EC2
         TARGET: "/home/ubuntu/portfolio-api" # Diretório de destino no servidor
