@@ -1,16 +1,18 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { EmailsService } from './emails.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { Public } from '../../common/decorators/public';
+import { EmailRequest } from './entities/email-request';
 
 @UseGuards(AuthGuard)
 @Controller('emails')
 export class EmailsController {
   constructor(private readonly emailsService: EmailsService) {}
 
+  @HttpCode(HttpStatus.OK)
   @Post()
-  public async sendEmail(@Body('email') email: string) {
-    await this.emailsService.sendEmailCurriculum(email);
+  public async sendEmail(@Body('data') data: EmailRequest) {
+    await this.emailsService.sendEmailCurriculum(data);
   }
 
   @Public()

@@ -5,6 +5,7 @@ import * as path from 'path';
 import { ConfigService } from '@nestjs/config';
 import { passwordRecovery } from './templates/password.recovery';
 import { MailOptionsDto } from './dtos/mailOptions';
+import { EmailRequest } from './entities/email-request';
 
 @Injectable()
 export class EmailsService {
@@ -18,13 +19,15 @@ export class EmailsService {
     this.emailService = this.configService.get<string>('EMAIL');
   }
 
-  public async sendEmailCurriculum(email: string) {
+  public async sendEmailCurriculum(data: EmailRequest) {
     const htmlcontent = emailMarketing();
     const mailOptions = {
       from: this.emailService,
-      to: email,
-      subject: 'Desenvolvedor Full-Stack Currículo',
-      text: 'Desenvolvedor Full-Stack Currículo',
+      to: data.email,
+      subject: data.subject
+        ? data.subject
+        : 'Desenvolvedor Full-Stack Currículo',
+      text: data.subject ? data.subject : 'Desenvolvedor Full-Stack Currículo',
       html: htmlcontent,
       attachments: [
         {

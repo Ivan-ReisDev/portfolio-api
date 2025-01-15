@@ -25,6 +25,15 @@ model User {
   posts    String[]  @default([])
 }
 
+model Contacts {
+  id       Int       @default(autoincrement()) @id
+  name     String?
+  email    String    @unique
+  role     Role      @default(User)
+  password String    
+  posts    String[]  @default([])
+}
+
 model Projects {
   id           Int     @default(autoincrement()) @id
   title        String  
