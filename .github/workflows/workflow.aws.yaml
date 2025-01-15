@@ -1,13 +1,12 @@
-name: Push to AWS
+name: Deploy to EC2
 
-on: 
+on:
   push:
     branches:
       - main
-  
+
 jobs:
   deploy:
-    name: Deploy to EC2 
     runs-on: ubuntu-latest
 
     steps:
@@ -15,6 +14,9 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Install dependencies
+      run: npm install
+
+    - name: Deploy to EC2
       uses: easingthemes/ssh-deploy@main
       env:
         SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }} # A chave privada deve estar configurada em secrets
@@ -22,4 +24,4 @@ jobs:
         REMOTE_HOST: "ec2-18-231-189-14.sa-east-1.compute.amazonaws.com" # O IP ou domínio da sua instância EC2
         REMOTE_USER: "ubuntu" # Usuário da instância EC2
         TARGET: "/home/ubuntu/portfolio-api" # Diretório de destino no servidor
-        EXCLUDE: "/dist/ /node_modules/ /prisma/ docker-compose.yml .git* *.yml" # Correção do formato de exclusão
+        EXCLUDE: "dist node_modules prisma docker-compose.yml .git* *.yml" # Correção do formato de exclusão
