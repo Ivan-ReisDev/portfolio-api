@@ -8,6 +8,7 @@ import { ProjectsModule } from './module/projects/projects.module';
 import { UploadsModule } from './module/uploads/uploads.module';
 import { EmailsModule } from './module/emails/emails.module';
 import { ConfigService } from './module/config/config.service';
+import { ContactModule } from './module/contact/contact.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ConfigService } from './module/config/config.service';
     UploadsModule,
     EmailsModule,
     ConfigModule,
+    ContactModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],

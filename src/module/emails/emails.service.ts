@@ -6,6 +6,8 @@ import { ConfigService } from '@nestjs/config';
 import { passwordRecovery } from './templates/password.recovery';
 import { MailOptionsDto } from './dtos/mailOptions';
 import { EmailRequest } from './entities/email-request';
+import { ContactService } from '../contact/contact.service';
+import { Contact } from '../contact/entities/Contact';
 
 @Injectable()
 export class EmailsService {
@@ -15,11 +17,17 @@ export class EmailsService {
     @Inject('NODEMAILER_TRANSPORT')
     private readonly transporter: nodemailer.Transporter,
     private readonly configService: ConfigService,
+    private readonly contactService: ContactService,
   ) {
     this.emailService = this.configService.get<string>('EMAIL');
   }
 
   public async sendEmailCurriculum(data: EmailRequest) {
+    await this.contactService.inicialize(
+      { email: data.email } as Contact,
+      true,
+    );
+
     const htmlcontent = emailMarketing();
     const mailOptions = {
       from: this.emailService,

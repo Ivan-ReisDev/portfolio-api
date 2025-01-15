@@ -3,9 +3,11 @@ import { EmailsController } from './emails.controller';
 import { EmailsService } from './emails.service';
 import * as nodemailer from 'nodemailer';
 import { ConfigService } from '@nestjs/config';
+import { ContactModule } from '../contact/contact.module';
 
 @Module({
   controllers: [EmailsController],
+  imports: [ContactModule],
   providers: [
     EmailsService,
     {

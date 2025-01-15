@@ -29,9 +29,8 @@ model Contacts {
   id       Int       @default(autoincrement()) @id
   name     String?
   email    String    @unique
-  role     Role      @default(User)
-  password String    
-  posts    String[]  @default([])
+  phone    String?
+  date     DateTime?
 }
 
 model Projects {
