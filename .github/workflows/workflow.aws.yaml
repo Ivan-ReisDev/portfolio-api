@@ -39,5 +39,6 @@ jobs:
         pm2 stop nestjs-app || true 
         pm2 delete nestjs-app || true
         pm2 start npm --name nestjs-app -- run start -- -p 3000 
+        pm2 save
         sudo systemctl restart nginx
         EOF
