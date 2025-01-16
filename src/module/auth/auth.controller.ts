@@ -15,6 +15,7 @@ import { AuthResponseDto } from './dtos/auth.response.dto';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { Public } from '../../common/decorators/public';
+import { ApiBody, ApiResponse } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard)
 @Controller('auth')
@@ -24,6 +25,14 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @UsePipes(ValidationPipe)
   @Post('/login')
+  @ApiBody({
+    type: AuthDto,
+    description: 'Autenticação do usuário',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Retorna o token de autenticação via cookie httponly',
+  })
   public async signIn(
     @Body() auth: AuthDto,
     @Res({ passthrough: true }) response: Response,
@@ -40,6 +49,13 @@ export class AuthController {
 
   @Post('/logout')
   @HttpCode(HttpStatus.OK)
+  @ApiBody({
+    description: 'O body não é necessário',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'limpa o token httpOnly do cookie',
+  })
   public async logout(
     @Res({ passthrough: true }) response: Response,
   ): Promise<{ message: string }> {
