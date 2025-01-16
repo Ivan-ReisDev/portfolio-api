@@ -16,7 +16,9 @@ import { ContactModule } from '../contact/contact.module';
         const email = configService.get<string>('EMAIL');
         const password = configService.get<string>('EMAIL_PASS');
         return nodemailer.createTransport({
-          service: 'gmail',
+          host: 'smtp.gmail.com',
+          port: 587,
+          secure: false,
           auth: {
             user: email,
             pass: password,
