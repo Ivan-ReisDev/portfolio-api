@@ -13,12 +13,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build
-      run: npm run build
-
     - name: Deploy to EC2
       uses: easingthemes/ssh-deploy@main
       with:
@@ -29,6 +23,12 @@ jobs:
         TARGET: "/home/ubuntu/portfolio-api" 
         EXCLUDE: "dist/,node_modules/,prisma/,docker-compose.yml,.git*,*.yml" 
         ARGS: "-avzr --delete"
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
         
     - name: Deploy to EC2 (PM2 Deployment)
       run: |
