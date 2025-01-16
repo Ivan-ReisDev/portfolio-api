@@ -21,6 +21,9 @@ import { ContactModule } from '../contact/contact.module';
             user: email,
             pass: password,
           },
+          tls: {
+            rejectUnauthorized: false, // desativa a verificação de certificado
+          },
         });
       },
       inject: [ConfigService],
