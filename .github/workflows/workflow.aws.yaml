@@ -18,7 +18,7 @@ jobs:
       with:
         SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }} 
         SOURCE: "/" 
-        REMOTE_HOST: "ec2-18-231-189-14.sa-east-1.compute.amazonaws.com" 
+        REMOTE_HOST: "ec2-15-229-59-227.sa-east-1.compute.amazonaws.com" 
         REMOTE_USER: "ubuntu" 
         TARGET: "/home/ubuntu/portfolio-api" 
         EXCLUDE: "dist/,node_modules/,prisma/,docker-compose.yml,.git*,*.yml" 
@@ -28,7 +28,7 @@ jobs:
       run: |
         echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
         chmod 600 private_key.pem
-        ssh -i private_key.pem ubuntu@ec2-18-231-189-14.sa-east-1.compute.amazonaws.com << 'EOF'
+        ssh -i private_key.pem ubuntu@ec2-15-229-59-227.sa-east-1.compute.amazonaws.com << 'EOF'
         cd /home/ubuntu/portfolio-api
         npm install
         npm run build
