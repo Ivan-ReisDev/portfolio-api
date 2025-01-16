@@ -13,12 +13,10 @@ import { ContactModule } from '../contact/contact.module';
     {
       provide: 'NODEMAILER_TRANSPORT',
       useFactory: (configService: ConfigService) => {
-        const email = configService.get<string>('EMAIL_AWS');
-        const password = configService.get<string>('EMAIL_PASS_AWS');
+        const email = configService.get<string>('EMAIL');
+        const password = configService.get<string>('EMAIL_PASS');
         return nodemailer.createTransport({
-          host: 'email-smtp.sa-east-1.amazonaws.com',
-          port: 587,
-          secure: false,
+          service: 'gmail',
           auth: {
             user: email,
             pass: password,
