@@ -6,16 +6,6 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-
-  app.enableCors({
-    origin: 'https://portfolio-theta-sepia-99.vercel.app',
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
-    allowedHeaders: 'Content-Type, Authorization',
-    credentials: true,
-  });
-
-  app.use(cookieParser());
-
   const config = new DocumentBuilder()
     .setTitle('API Portfolio')
     .setDescription(
@@ -26,6 +16,15 @@ async function bootstrap() {
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
+
+  app.enableCors({
+    origin: 'https://portfolio-theta-sepia-99.vercel.app',
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,
+  });
+
+  app.use(cookieParser());
 
   await app.listen(process.env.PORT ?? 3000);
 }
