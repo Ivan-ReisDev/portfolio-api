@@ -19,7 +19,7 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Deploy to EC2
+    - name: Deploy to EC2 (SSH Deploy Action)
       uses: easingthemes/ssh-deploy@main
       with:
         SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }} 
@@ -27,14 +27,14 @@ jobs:
         REMOTE_HOST: "ec2-18-231-189-14.sa-east-1.compute.amazonaws.com" 
         REMOTE_USER: "ubuntu" 
         TARGET: "/home/ubuntu/portfolio-api" 
-        EXCLUDE: "dist/,node_modules/,prisma/,docker-compose.yml,.git*,*.yml" 
-        
-     - name: Deploy to EC2
-       run: |
-         echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
-         chmod 600 private_key.pem
-         ssh -i private_key.pem ubuntu@ec2-18-231-189-14.sa-east-1.compute.amazonaws.com << 'EOF'
-         cd /home/ubuntu/portfolio-api
-         pm2 stop nestjs-app || true 
+        EXCLUDE: "dist/,node_modules/,prisma/,docker-compose.yml,.git*,*.yml"
+
+    - name: Deploy to EC2 (PM2 Deployment)
+      run: |
+        echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
+        chmod 600 private_key.pem
+        ssh -i private_key.pem ubuntu@ec2-18-231-189-14.sa-east-1.compute.amazonaws.com << 'EOF'
+        cd /home/ubuntu/portfolio-api
+        pm2 stop nestjs-app || true 
         pm2 start npm --name nestjs-app -- run start -- -p 3000 
-      EOF
+        EOF
