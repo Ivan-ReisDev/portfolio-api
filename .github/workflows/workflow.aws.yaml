@@ -24,18 +24,13 @@ jobs:
         EXCLUDE: "dist/,node_modules/,prisma/,docker-compose.yml,.git*,*.yml" 
         ARGS: "-avzr --delete"
 
-    - name: Deploy to EC2 (PM2 Deployment)
+    - name: Deploy to EC2 (Docker Deployment)
       run: |
         echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
         chmod 600 private_key.pem
         ssh -i private_key.pem ubuntu@ec2-15-229-59-227.sa-east-1.compute.amazonaws.com << 'EOF'
         cd /home/ubuntu/portfolio-api
-        npm install
-        npm install --save @nestjs/swagger --legacy-peer-deps
-        npm run build
-        pm2 stop nestjs-app || true 
-        pm2 delete nestjs-app || true
-        pm2 start npm --name nestjs-app -- run start -- -p 3000 
-        pm2 save
+        sudo docker compose down
+        sudo docker compose up -d --build
         sudo systemctl restart nginx
         EOF
