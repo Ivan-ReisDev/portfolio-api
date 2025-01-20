@@ -7,6 +7,8 @@ COPY prisma ./prisma
 
 RUN npm install --legacy-peer-deps
 
+RUN npx prisma migrate dev --name init
+
 COPY . .
 
 RUN npm run build
