@@ -5,5 +5,5 @@ coverage
 .git
 .gitignore
 .dockerignore
-prisma
+
 
