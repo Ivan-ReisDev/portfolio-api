@@ -9,13 +9,10 @@ services:
     ports:
       - '3000:3000'
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
-      DATABASE_HOST: postgres
-      DATABASE_PORT: 5432
-      DATABASE_NAME: api-portfolio-db
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: 123456789
+      DATABASE_URL: postgres://postgres:123456789@postgres:5432/api-portfolio-db
 
   postgres:
     image: postgres:latest
@@ -28,6 +25,11 @@ services:
       POSTGRES_PASSWORD: 123456789
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
