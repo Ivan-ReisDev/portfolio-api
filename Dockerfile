@@ -2,15 +2,11 @@ FROM node:22.12.0
 
 WORKDIR /app
 
-COPY package*.json ./  
+COPY package*.json ./
 
 RUN npm install --legacy-peer-deps
 
 COPY . .
-
-RUN npm install prisma --save-dev
-RUN npx prisma init
-RUN npx prisma migrate dev --name init
 
 RUN npm run build
 
