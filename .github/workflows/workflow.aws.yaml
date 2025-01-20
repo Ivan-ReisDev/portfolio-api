@@ -16,21 +16,21 @@ jobs:
     - name: Deploy to EC2
       uses: easingthemes/ssh-deploy@main
       with:
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}  # Chave privada SSH da instância EC2
-        SOURCE: "/"  # Código-fonte do repositório
-        REMOTE_HOST: "ec2-15-229-59-227.sa-east-1.compute.amazonaws.com"  # IP da sua instância EC2
-        REMOTE_USER: "ubuntu"  # Usuário SSH na instância EC2
-        TARGET: "/home/ubuntu/portfolio-api"  # Diretório onde o código será enviado
-        EXCLUDE: "dist/,node_modules/,.git*,*.yml,.env"  # Arquivos a serem excluídos no envio
-        ARGS: "-avzr --delete"  # Opções do comando rsync
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }} 
+        SOURCE: "/" 
+        REMOTE_HOST: "ec2-15-229-59-227.sa-east-1.compute.amazonaws.com" 
+        REMOTE_USER: "ubuntu" 
+        TARGET: "/home/ubuntu/portfolio-api" 
+        EXCLUDE: "dist/,node_modules/,prisma/,docker-compose.yml,.git*,*.yml" 
+        ARGS: "-avzr --delete"
 
     - name: Deploy to EC2 (Docker Deployment)
       run: |
         echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
         chmod 600 private_key.pem
         ssh -i private_key.pem ubuntu@ec2-15-229-59-227.sa-east-1.compute.amazonaws.com << 'EOF'
-        cd /home/ubuntu/portfolio-api  # Entrar no diretório do código na instância EC2
-        sudo docker compose pull 
-        sudo docker compose up -d #aa
-        sudo systemctl restart nginx  # Restart do Nginx (se necessário)
+        cd /home/ubuntu/portfolio-api
+        sudo docker compose down
+        sudo docker compose up -d --build
+        sudo systemctl restart nginx
         EOF
