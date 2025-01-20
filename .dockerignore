@@ -5,5 +5,4 @@ coverage
 .git
 .gitignore
 .dockerignore
-Dockerfile
 

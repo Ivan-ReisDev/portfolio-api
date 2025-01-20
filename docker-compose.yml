@@ -13,6 +13,7 @@ services:
         condition: service_healthy
     environment:
       DATABASE_URL: postgres://postgres:123456789@postgres:5432/api-portfolio-db
+    command: sh -c "while ! pg_isready -h postgres -U postgres; do sleep 2; done && npx prisma migrate deploy && npm start"
 
   postgres:
     image: postgres:latest
