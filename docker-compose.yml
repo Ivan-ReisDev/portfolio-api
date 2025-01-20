@@ -8,28 +8,10 @@ services:
     container_name: api-portfolio-app
     ports:
       - '3000:3000'
-    depends_on:
-      - postgres
     environment:
-      DATABASE_URL: postgres://postgres:123456789@postgres:5432/api-portfolio-db
-    command: sh -c "until pg_isready -h postgres -U postgres; do sleep 2; done && npx prisma migrate deploy && npm start"
-
-  postgres:
-    image: postgres:latest
-    container_name: api-portfolio-db
-    ports:
-      - '5432:5432'
-    environment:
-      POSTGRES_DB: api-portfolio-db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456789
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      # Ajuste a URL do banco de dados
+      DATABASE_URL: "postgres://username:password@postgres:5432/database_name"  # Ajuste conforme necessário, "postgres" será o nome do serviço do banco, se necessário
+    command: sh -c "npm run start"  # O comando já está configurado para rodar a aplicação
 
 volumes:
   postgres_data:

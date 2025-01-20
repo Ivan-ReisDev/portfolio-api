@@ -30,7 +30,7 @@ jobs:
         chmod 600 private_key.pem
         ssh -i private_key.pem ubuntu@ec2-15-229-59-227.sa-east-1.compute.amazonaws.com << 'EOF'
         cd /home/ubuntu/portfolio-api  # Entrar no diretório do código na instância EC2
-        sudo docker compose down  # Parar os containers atuais
-        sudo docker compose up -d --build  # Subir os novos containers com as últimas alterações
+        sudo docker compose down  
+        sudo docker compose up -d --build  
         sudo systemctl restart nginx  # Restart do Nginx (se necessário)
         EOF
