@@ -1,18 +1,6 @@
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: api-portfolio-app
-    ports:
-      - '3000:3000'
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      DATABASE_URL: postgres://postgres:123456789@postgres:5432/api-portfolio-db
-    command: sh -c "while ! pg_isready -h postgres -U postgres; do sleep 2; done && npx prisma migrate deploy && npm start"
+version: '3.8'
 
+services:
   postgres:
     image: postgres:latest
     container_name: api-portfolio-db
@@ -22,13 +10,3 @@ services:
       POSTGRES_DB: api-portfolio-db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456789
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-# teste
-volumes:
-  postgres_data:
