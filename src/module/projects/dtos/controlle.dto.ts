@@ -11,6 +11,6 @@ export class ControlleDto {
 
   constructor(props: Partial<ControlleDto>) {
     this.page = +props.page || 1; // Define 1 como padrão
-    this.limit = +props.limit || 10; // Define 10 como padrão
+    this.limit = +props.limit || 10; // Define 10 como padrãoa
   }
 }

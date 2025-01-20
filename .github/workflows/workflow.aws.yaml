@@ -21,7 +21,7 @@ jobs:
         REMOTE_HOST: "ec2-15-229-59-227.sa-east-1.compute.amazonaws.com" 
         REMOTE_USER: "ubuntu" 
         TARGET: "/home/ubuntu/portfolio-api" 
-        EXCLUDE: "dist/,node_modules/,prisma/,docker-compose.yml,.git*,*.yml" 
+        EXCLUDE: "dist/,node_modules/,.git*,*.yml,.env" 
         ARGS: "-avzr --delete"
 
     - name: Deploy to EC2 (Docker Deployment)
