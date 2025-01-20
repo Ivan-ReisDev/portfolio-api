@@ -30,7 +30,6 @@ jobs:
         chmod 600 private_key.pem
         ssh -i private_key.pem ubuntu@ec2-15-229-59-227.sa-east-1.compute.amazonaws.com << 'EOF'
         cd /home/ubuntu/portfolio-api
-        npm install
         npm install --legacy-peer-depss
         npm run build
         pm2 stop nestjs-app || true 
