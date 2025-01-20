@@ -9,6 +9,8 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
+RUN npx prisma init
+
 RUN npm run build
 
 EXPOSE 3000
