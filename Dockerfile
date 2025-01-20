@@ -3,17 +3,17 @@ FROM node:22.12.0
 WORKDIR /app
 
 COPY package*.json ./  
-COPY prisma ./prisma
 
 RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# Roda as migrações, sem precisar rodar 'npx prisma init'
-RUN npx prisma migrate deploy
+RUN npm install prisma --save-dev
+RUN npx prisma init
+RUN npx prisma migrate dev --name init
 
 RUN npm run build
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
+CMD ["npm start"]
