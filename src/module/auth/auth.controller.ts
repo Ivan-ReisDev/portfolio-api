@@ -46,7 +46,7 @@ export class AuthController {
     });
     return authResponse;
   }
-
+//teste
   @Post('/logout')
   @HttpCode(HttpStatus.OK)
   @ApiBody({
