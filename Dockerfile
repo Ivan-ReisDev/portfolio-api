@@ -4,9 +4,12 @@ WORKDIR /app
 
 COPY package*.json ./
 COPY prisma ./prisma
-COPY . .
 
 RUN npm install --legacy-peer-deps
+
+COPY . .
+
+RUN npm rebuild bcrypt --build-from-source
 
 RUN npm run build
 
