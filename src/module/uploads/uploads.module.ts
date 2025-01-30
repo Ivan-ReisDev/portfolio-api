@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UploadsController } from './uploads.controller';
 import { UploadsService } from './uploads.service';
-import { Supabase } from '../../lib/supabase/supabase';
+import { Supabase } from '../../infrastructure/providers/supabase/supabase';
 import { ConfigService } from '@nestjs/config';
 
 @Module({

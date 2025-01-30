@@ -5,7 +5,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { Project } from './entities/projects';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 import { ProjectResponse } from './entities/projects.response';
 
 @Injectable()

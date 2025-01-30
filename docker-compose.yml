@@ -3,35 +3,40 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: api-portfolio-app
+    container_name: nebulosa-api
     ports:
       - '3000:3000'
     depends_on:
       postgres:
         condition: service_healthy
     environment:
-      DATABASE_HOST: postgres
-      DATABASE_PORT: 5432
-      DATABASE_NAME: api-portfolio-db
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: 123456789
+      DATABASE_URL: postgresql://postgres:123456789@postgres:5432/nebulosa-db?schema=public
+    networks:
+      - app-network
+    restart: always
 
   postgres:
     image: postgres:latest
-    container_name: api-portfolio-db
+    container_name: nebulosa-db
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_DB: api-portfolio-db
+      POSTGRES_DB: nebulosa-db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456789
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
-      interval: 10s
+      test: ['CMD-SHELL', 'pg_isready -U $POSTGRES_USER']
+      interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
+    networks:
+      - app-network
 
 volumes:
   postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

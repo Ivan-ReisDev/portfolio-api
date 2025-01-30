@@ -9,7 +9,7 @@ import {
 import { EmailsService } from './emails.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { Public } from '../../common/decorators/public';
-import { EmailRequest } from './entities/email-request';
+import { EmailRequest } from './domain/dtos/email-request';
 
 @UseGuards(AuthGuard)
 @Controller('emails')

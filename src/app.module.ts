@@ -9,6 +9,7 @@ import { UploadsModule } from './module/uploads/uploads.module';
 import { EmailsModule } from './module/emails/emails.module';
 import { ConfigService } from './module/config/config.service';
 import { ContactModule } from './module/contact/contact.module';
+import { NodemailerModule } from './infrastructure/providers/nodemailer/nodemailer.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ContactModule } from './module/contact/contact.module';
     EmailsModule,
     ConfigModule,
     ContactModule,
+    NodemailerModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],

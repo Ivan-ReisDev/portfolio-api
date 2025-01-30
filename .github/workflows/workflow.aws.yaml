@@ -30,11 +30,7 @@ jobs:
         chmod 600 private_key.pem
         ssh -i private_key.pem ubuntu@ec2-56-124-35-86.sa-east-1.compute.amazonaws.com << 'EOF'
         cd /home/ubuntu/portfolio-api
-        sudo docker pull ivanreisdev/web:latest
-        sudo docker stop portfolio-api || true
-        sudo docker rm portfolio-api || true
-        sudo docker run -d --name portfolio-api \
-          -p 3000:3000 \
-          ivanreisdev/web:latest
+        sudo chmod +x entrypoint.sh
+        sudo docker compose build --no-cache && docker compose up -d
         sudo systemctl restart nginx
         EOF
